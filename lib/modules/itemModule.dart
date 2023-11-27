@@ -6,7 +6,7 @@ class ItemModule{
   String?  details;
   int? count;
   double price, carbonFootprint;
-  AltModule? alternatives;
+  List<ItemModule>? alternatives = [];
 
 
   ItemModule({

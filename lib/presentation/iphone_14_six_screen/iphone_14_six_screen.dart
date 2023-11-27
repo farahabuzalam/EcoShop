@@ -1,11 +1,12 @@
 import 'package:farah_s_ecoshop/core/app_export.dart';
+import 'package:farah_s_ecoshop/modules/itemModule.dart';
 import 'package:farah_s_ecoshop/widgets/app_bar/appbar_subtitle_four.dart';
 import 'package:farah_s_ecoshop/widgets/app_bar/custom_app_bar.dart';
 import 'package:farah_s_ecoshop/widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class Iphone14SixScreen extends StatelessWidget {
-  const Iphone14SixScreen({Key? key})
+   const Iphone14SixScreen({Key? key} )
       : super(
           key: key,
         );

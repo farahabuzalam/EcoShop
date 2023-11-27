@@ -1,6 +1,7 @@
 import 'package:farah_s_ecoshop/globalVariables.dart';
 import 'package:farah_s_ecoshop/modules/cartListModule.dart';
 import 'package:farah_s_ecoshop/modules/itemModule.dart';
+import 'package:farah_s_ecoshop/presentation/iphone_14_eight_screen/detailsScreen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -36,6 +37,8 @@ class _ItemContainerState extends State<ItemContainer> {
     return GestureDetector(
       child: Container(
         decoration: BoxDecoration(
+          border: Border.all(color: Colors.green),
+          borderRadius: BorderRadius.circular(20),
           color: Colors.transparent,
         ),
         padding: EdgeInsets.symmetric(
@@ -50,13 +53,11 @@ class _ItemContainerState extends State<ItemContainer> {
               child: Image.network(
                 widget.item.image,
                 fit: BoxFit.cover,
-                height: 150,
+                height: 120,
 
               ),
             ),
-            SizedBox(
-              width:20,
-            ),
+            Spacer(),
 
             Column(
               children:[
@@ -124,6 +125,10 @@ class _ItemContainerState extends State<ItemContainer> {
           ]
         )
       ),
+
+      onTap:()=> Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  DetailScreen(item: widget.item))).then((value) => setState((){})),
 
     );
   }

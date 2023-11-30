@@ -21,6 +21,12 @@ class _CarrefourItemsState extends State<CarrefourItems> {
   List<ItemModule> _itemsList = [];
   List<ItemModule> _spoonsAlts = [];
   List<ItemModule> _bottleAlts =[];
+  List<ItemModule> _cleaningAlts =[];
+  List<ItemModule> _towelsAlts =[];
+  List<ItemModule> _shampooAlts =[];
+
+
+
 
 
   @override
@@ -42,6 +48,31 @@ class _CarrefourItemsState extends State<CarrefourItems> {
         name: "Bambaw Water Bottle",
         image: "https://m.media-amazon.com/images/I/71dS3hQUQ7L._AC_UF1000,1000_QL80_.jpg",
         price: 17));
+
+    _cleaningAlts.add(ItemModule(carbonFootprint: 1.5,
+        name: "Earth Choice Spray",
+        image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSWoyBoQtyyzX6vjqE-OGb-IAU6HZRScYI6YTh5VrzsjJ2BthZ7f5dIrmNhI3gC3K1yyTBfB5at0e5AOFaqCR70fdqXCBoEIh1x9LkJtsS_1XWYWt1Reanx&usqp=CAE",
+        price: 20));
+
+    _cleaningAlts.add(ItemModule(carbonFootprint: 3,
+        name: "Pure Water Detergent",
+        image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQSduW8b9zJCi-cOycas8pfHebNiS8iwNsFvJHqokQwJmOcJPqxx_lKPHN4iu0EykTPTqkI4XocIPxt5KxmyszfysDnvtE7-BQGaHCh0RjOmevnRqQpqXyN4w&usqp=CAE",
+        price: 17));
+
+    _towelsAlts.add(ItemModule(carbonFootprint: 3,
+        name: "Reusable Towels",
+        image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTGM3WqUd8nX-BzhwEdxxzwpQBJFUCTXuQ00-FUfZ-Xx1rzu9tik1gH3owbYryaDVQ3k5lv7cG9_k0nYXAx57NeQkdkgtT94LnDqI-4E3PZO79FA-UdaXvqWQ&usqp=CAE",
+        price: 17));
+
+    _shampooAlts.add(ItemModule(carbonFootprint: 3,
+        name: "Organic Hair Shampoo",
+        image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSHkBD0e_CTUz0YkjmyvxEKrI6QiZtJ_C857MGcf-0ip1C-SI5dS0B11q0NfltFQUX1z1mwoPSLBVNZihu_CfltJBrC1teTVV0IfmBOCh53QGwGoe1Ynwqgqg&usqp=CAE",
+        price: 23));
+
+    _towelsAlts.add(ItemModule(carbonFootprint: 1,
+        name: "Recycled Paper",
+        image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQl0rUmySa0C6nVd2Bkdcxe2vkNBjBxFajLiEsmKGR3cN36Z8jtM0B-dzCGKyfWaG-kNf-096a8gnoKYQOETumlkKeuxh-o4Qos9Ui4ZNG5vME-iz-LycLoKQ&usqp=CAE",
+        price: 13));
     
 
     _itemsList.add(ItemModule(carbonFootprint: 5,
@@ -56,36 +87,51 @@ class _CarrefourItemsState extends State<CarrefourItems> {
         price: 2,
         alternatives: _bottleAlts));
 
+    _itemsList.add(ItemModule(carbonFootprint: 2.3,
+        name: "Clorox Bleach Liquid",
+        image: "https://cdnprod.mafretailproxy.com/sys-master-root/h5d/had/48116626817054/1700Wx1700H_1101_main.jpg",
+        price: 15,
+        alternatives: _cleaningAlts));
+
+    _itemsList.add(ItemModule(carbonFootprint: 7,
+        name: "Scott Paper Towels",
+        image: "https://m.media-amazon.com/images/I/91RAiHu9M6L.jpg",
+        price: 2,
+        alternatives: _towelsAlts));
+
+    _itemsList.add(ItemModule(carbonFootprint: 10,
+        name: "TRESemme Shampoo",
+        image: "https://m.media-amazon.com/images/I/61G2dDBEGTL.jpg",
+        price: 25,
+        alternatives: _shampooAlts));
 
 
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
 
 
-        body: SizedBox(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+         children: [
 
-          child: Column(
-            children: [
+           SizedBox(height:60),
+           _verticalList(_itemsList),
 
-              SizedBox(height: 23.v),
-              _verticalList(_itemsList),
-              Spacer(),
+           SizedBox(height: 6.v),
 
-              SizedBox(height: 6.v),
+           CustomImageView(
+             imagePath: ImageConstant.imgCompanyLogo1,
+             height: 60.v,
+             width: 225.h,
+           ),
+           SizedBox(height: 26.v),
+         ],
 
-              CustomImageView(
-                imagePath: ImageConstant.imgCompanyLogo1,
-                height: 60.v,
-                width: 225.h,
-              ),
-              SizedBox(height: 26.v),
-            ],
           ),
-        ),
       ),
     );
 

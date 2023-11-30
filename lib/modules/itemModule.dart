@@ -1,4 +1,3 @@
-import 'package:farah_s_ecoshop/modules/altModule.dart';
 
 
 class ItemModule{

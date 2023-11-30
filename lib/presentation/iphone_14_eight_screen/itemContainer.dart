@@ -82,7 +82,7 @@ class _ItemContainerState extends State<ItemContainer> {
                 Row(
                   children: [
                     Text(
-                      "Carbon Footprint",
+                      "Carbon Footprint ",
                       style: TextStyle(color: Colors.black),
                     ),
                     Text(

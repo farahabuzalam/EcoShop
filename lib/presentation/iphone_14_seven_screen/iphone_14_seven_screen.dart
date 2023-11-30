@@ -15,6 +15,8 @@ class Iphone14SevenScreen extends StatefulWidget {
 class _Iphone14SevenScreenState extends State<Iphone14SevenScreen> {
   @override
 
+  double _limit= GlobalVariables.cartList.length * 2;
+
   _calculateTotal() {
     double total = 0;
 
@@ -24,14 +26,11 @@ class _Iphone14SevenScreenState extends State<Iphone14SevenScreen> {
     });
 
 
-  /*  int discountPerc = _applyCode();
-    if (_validate)
-      return total - (discountPerc*total)/100;
-    else*/
+
       return total;
   }
 
-  _calculateCFTotal() {
+  _calculateCFTotal() async {
     double total = 0;
 
     GlobalVariables.cartList.forEach((element) {
@@ -44,11 +43,30 @@ class _Iphone14SevenScreenState extends State<Iphone14SevenScreen> {
     if (_validate)
       return total - (discountPerc*total)/100;
     else*/
+
+    await Future.delayed(Duration.zero, () {
+      if(total > _limit)
+      _showAlert("Carbon Footprint Excceds The Recommended Limit!", "The recommended level is: "+ '${_limit}');
+      else
+        _showAlert("Carbon Footprint is within Limits", "Proceed with shopping");
+    });
+
     return total;
   }
 
 
-  String _code = 'sofan3';
+  _showAlert(title, description){
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(title),
+        content:  Text(description),
+
+      ),
+    );
+  }
+
+
 
   bool _validate = false;
 
@@ -100,16 +118,27 @@ class _Iphone14SevenScreenState extends State<Iphone14SevenScreen> {
                   Row(
                  children: [  Text('Total Carbon Footprint: ', style: TextStyle(fontSize: 20)),
                   Spacer(),
-                  Text(_calculateCFTotal().toString(),
-                   style: TextStyle(fontSize: 20),
-                       )],
-                       )
+
+        FutureBuilder<dynamic>(
+        future: _calculateCFTotal(),
+    builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+    // Display a loading indicator while waiting for the result
+    return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+    // Handle any errors that occurred
+    return Text('Error: ${snapshot.error}');
+    } else {
+    // Display the result
+    return Text('${snapshot.data}',
+    style: TextStyle(fontSize: 20));
 
 
-                ],
+    }
+        })],
               ),
-              ),
-            ]
+              ]),
+    )]
 
       ),
     );
